@@ -1,46 +1,20 @@
 ﻿namespace TwitterClone.Domain.Entities
 {
-    public class Tweet
+    public class Tweet : BaseEntity
     {
-        private Guid _id;
-        private Guid _userId;
-        private string _content;
-        private DateTime _createdAt;
-        private DateTime _modifiedAt;
+        public Guid UserId { get; set; }
 
-        public Tweet()
+        public string Content { get; set; }
+
+        public Tweet() : base(Guid.NewGuid())
         {
-            _id = Guid.NewGuid();
-            _createdAt = DateTime.UtcNow;
         }
 
-        public Guid Id
+        public override string DescribeRecord()
         {
-            get { return _id; }
-        }
+            var baseRecord = base.DescribeRecord();
 
-        public Guid UserId
-        {
-            get { return _userId; }
-            set { _userId = value; }
+            return $"{baseRecord}, UserId: {UserId}, Content: {Content}";
         }
-
-        public string Content
-        {
-            get { return _content; }
-            set { _content = value; }
-        }
-
-        public DateTime CreatedAt
-        {
-            get { return _createdAt; }
-        }
-
-        public DateTime ModifiedAt
-        {
-            get { return _modifiedAt; }
-            set { _modifiedAt = value; }
-        }
-
     }
 }
