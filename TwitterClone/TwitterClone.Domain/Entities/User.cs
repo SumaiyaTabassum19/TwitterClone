@@ -7,6 +7,8 @@
         private string _lastName;
         //private string _userName;
         private string _email;
+        //private DateTime _createdAt;
+        //private DateTime _modifiedAt;
         public Guid Id
         {
             get { return _id; }
