@@ -2,22 +2,19 @@
 {
     public class SystemNotification : Notification
     {
-        public string Message { get; set; }
-
-        public SystemNotification() : base()
+        public SystemNotification()
+            : base("System")
         {
-        }
-
-        public override string GetNotificationMessage()
-        {
-            return Message;
         }
 
         public override string DescribeRecord()
         {
-            var baseRecord = base.DescribeRecord();
+            return base.DescribeRecord();
+        }
 
-            return $"{baseRecord}, Message: {Message}";
+        public override string GetMessage()
+        {
+            return "System Notification: Unknown Error";
         }
     }
 }

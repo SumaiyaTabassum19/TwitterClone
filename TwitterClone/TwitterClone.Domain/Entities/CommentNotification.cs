@@ -2,22 +2,24 @@
 {
     public class CommentNotification : Notification
     {
-        public Guid TweetId { get; set; }
+        public Guid CommentByUserId { get; set; }
 
-        public CommentNotification() : base()
+        public CommentNotification(Guid commentByUserId)
+            : base("Comment")
         {
-        }
-
-        public override string GetNotificationMessage()
-        {
-            return "Someone commented on your tweet.";
+            CommentByUserId = commentByUserId;
         }
 
         public override string DescribeRecord()
         {
             var baseRecord = base.DescribeRecord();
 
-            return $"{baseRecord}, TweetId: {TweetId}";
+            return $"{baseRecord}, CommentByUserId: {CommentByUserId}";
+        }
+
+        public override string GetMessage()
+        {
+            return $"User with ID {CommentByUserId} commented on your post.";
         }
     }
 }
