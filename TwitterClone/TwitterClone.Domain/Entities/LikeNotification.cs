@@ -2,22 +2,24 @@
 {
     public class LikeNotification : Notification
     {
-        public Guid TweetId { get; set; }
+        public Guid LikeByUserId { get; set; }
 
-        public LikeNotification() : base()
+        public LikeNotification(Guid likeByUserId)
+            : base("Like")
         {
-        }
-
-        public override string GetNotificationMessage()
-        {
-            return "Someone liked your tweet.";
+            LikeByUserId = likeByUserId;
         }
 
         public override string DescribeRecord()
         {
             var baseRecord = base.DescribeRecord();
 
-            return $"{baseRecord}, TweetId: {TweetId}";
+            return $"{baseRecord}, LikeByUserId: {LikeByUserId}";
+        }
+
+        public override string GetMessage()
+        {
+            return $"User with ID {LikeByUserId} liked your post.";
         }
     }
 }

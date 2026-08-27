@@ -2,18 +2,24 @@
 {
     public class FriendRequestNotification : Notification
     {
-        public FriendRequestNotification() : base()
-        {
-        }
+        public Guid RequestedByUserId { get; set; }
 
-        public override string GetNotificationMessage()
+        public FriendRequestNotification(Guid requestedByUserId)
+            : base("Friend Request")
         {
-            return "You received a new friend request.";
+            RequestedByUserId = requestedByUserId;
         }
 
         public override string DescribeRecord()
         {
-            return base.DescribeRecord();
+            var baseRecord = base.DescribeRecord();
+
+            return $"{baseRecord}, RequestedByUserId: {RequestedByUserId}";
+        }
+
+        public override string GetMessage()
+        {
+            return $"User with ID {RequestedByUserId} sent you a friend request.";
         }
     }
 }
